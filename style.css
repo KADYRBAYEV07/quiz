@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #7a4419, #b96d31);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#quiz-container {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ffddae;
+}
+
+#question {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+#options {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.option-btn {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.option-btn:hover {
+  background-color: #ffe0b2;
+}
+
+.correct {
+  background-color: #4CAF50 !important;
+  color: white;
+}
+
+.wrong {
+  background-color: #f44336 !important;
+  color: white;
+}
+
+#next-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+#next-btn:hover {
+  background-color: #fb8c00;
+}
+
+.instagram-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #3b1f0f;
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.instagram-link img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.instagram-link span {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.quote {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #ffe7c6;
+  font-style: italic;
+}
+/* Жалпы стильдер */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #8a4b27, #b36b35);
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Бастапқы бет стилі */
+.start-page .start-container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.start-page h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.start-page p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: #ff8c42;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.start-btn:hover {
+  background-color: #e67328;
+}
+
+/* Instagram сілтемесі */
+.instagram-link {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.instagram-link img {
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+}
+
+.instagram-link span {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
