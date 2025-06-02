@@ -196,3 +196,21 @@ body {
   font-weight: bold;
   font-size: 14px;
 }
+.loh-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: red;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px yellow, -2px -2px 10px orange;
+  z-index: 9999;
+  animation: pop 0.3s ease-in-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.1) translate(-50%, -50%); opacity: 0; }
+  60% { transform: scale(1.1) translate(-50%, -50%); opacity: 1; }
+  100% { transform: scale(1) translate(-50%, -50%); }
+}
