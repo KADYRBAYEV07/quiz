@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2-нұсқа – Тест</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <!-- Музыка -->
@@ -22,10 +24,12 @@
   <!-- Тест -->
   <div class="quiz-container">
     <h2>Қазақстан тарихы тесті – 2-нұсқа</h2>
+    <div id="timer">⏱ 0 сек.</div>
     <div id="question-box"></div>
     <div id="options-box"></div>
     <button id="next-btn">Келесі сұрақ</button>
     <div id="result"></div>
+    <canvas id="resultChart" width="400" height="200"></canvas>
     <a href="index.html"><button id="back-btn">← Бастапқы бетке</button></a>
   </div>
 
@@ -49,6 +53,15 @@
     let questions = [];
     let currentQuestion = 0;
     let score = 0;
+    let seconds = 0;
+    let timerInterval;
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        seconds++;
+        document.getElementById("timer").textContent = `⏱ ${seconds} сек.`;
+      }, 1000);
+    }
 
     async function loadQuestions() {
       const res = await fetch('questions2.json');
@@ -58,6 +71,7 @@
         q.options = shuffle(q.options);
         return q;
       });
+      startTimer();
       showQuestion();
     }
 
@@ -78,13 +92,13 @@
     }
 
     function selectAnswer(button) {
-      const selected = button.textContent.trim();
-      const correct = questions[currentQuestion].correct_answer.trim();
+      const selected = button.textContent.trim().toLowerCase();
+      const correct = questions[currentQuestion].correct_answer.trim().toLowerCase();
       const options = document.querySelectorAll(".option-btn");
 
       options.forEach(opt => {
         opt.disabled = true;
-        if (opt.textContent.trim() === correct) {
+        if (opt.textContent.trim().toLowerCase() === correct) {
           opt.style.backgroundColor = '#28a745';
         } else if (opt === button) {
           opt.style.backgroundColor = '#dc3545';
@@ -95,13 +109,7 @@
         score++;
       } else {
         if (navigator.vibrate) navigator.vibrate(200);
-        const lohMsg = document.createElement('div');
-        lohMsg.innerText = "ЛОХ";
-        lohMsg.className = "loh-message";
-        document.body.appendChild(lohMsg);
-        setTimeout(() => {
-          lohMsg.remove();
-        }, 1500);
+        alert("Бас қатырма, келесі сұрақта көрерміз!");
       }
     }
 
@@ -115,11 +123,32 @@
     });
 
     function showResult() {
+      clearInterval(timerInterval);
       const percent = Math.round((score / questions.length) * 100);
       document.getElementById('question-box').innerHTML = '';
       document.getElementById('options-box').innerHTML = '';
       document.getElementById('next-btn').style.display = 'none';
       document.getElementById('result').innerHTML = `✅ Сіз ${questions.length} сұрақтың ${score}-іне дұрыс жауап бердіңіз (${percent}%)`;
+
+      const ctx = document.getElementById('resultChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Дұрыс', 'Қате'],
+          datasets: [{
+            data: [score, questions.length - score],
+            backgroundColor: ['#28a745', '#dc3545']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
     }
 
     loadQuestions();
@@ -223,26 +252,6 @@
       font-size: 18px;
       color: #00ffcc;
     }
-
-    .loh-message {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 64px;
-      color: red;
-      font-weight: bold;
-      text-shadow: 2px 2px 10px yellow, -2px -2px 10px orange;
-      z-index: 9999;
-      animation: pop 0.3s ease-in-out;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.1) translate(-50%, -50%); opacity: 0; }
-      60% { transform: scale(1.1) translate(-50%, -50%); opacity: 1; }
-      100% { transform: scale(1) translate(-50%, -50%); }
-    }
   </style>
 </body>
 </html>
-
